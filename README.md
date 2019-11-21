@@ -10,7 +10,7 @@ In a nutshell, the Powershell scripts are setup with Windows Task Scheduler that
 ### Install SwitchvoxAPI Powershell Module:
 First, you'll need to install the Powershell Module for the Switchvox API from here: https://github.com/lordmilko/SwitchvoxAPI.  The easiest way to do this is with NuGet:
 
-```
+```powershell
 Install-Package SwitchvoxAPI
 ```
 
@@ -29,12 +29,12 @@ Next, you'll need to setup the IVRs on your Switchvox.  Setup an IVR for each be
 1. **Play sound:** SelPlays the corresponding sound file from your stored sounds on the Switchvox.
 1. **End the call:** This is pretty self explanatory.
 
-## Create Your Bell Scripts:
+### Create Your Bell Scripts:
 Use the *BellExample.ps1* file to create scripts for each of your bells.
 
-## Make a Scheduled Task for Each Bell:
+### Make a Scheduled Task for Each Bell:
 Change the following Powershell commands for each bell you want to setup, and run it from a Powershell terminal:
-```
+```powershell
 $action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument 'C:\Path\To\Your\Bell.ps1'
 $trigger = New-ScheduledTaskrigger --Weekly -WeeksInterval 2 -DaysOfWeek Monday,Tuesday,Wednesday,Thursday,Friday -At 10am
 Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "Bell Name" -Description "This is a scheduled bell."
