@@ -30,7 +30,26 @@ Next, you'll need to setup the IVRs on your Switchvox.  Setup an IVR for each be
 1. **End the call:** This is pretty self explanatory.
 
 ### Create Your Bell Scripts:
-Use the *BellExample.ps1* file to create scripts for each of your bells.
+Before creating your bell scripts, you need to save the password for your admin user that has API rights to your switchvox in a secure format.  This is needed so you aren't storing your passwords inside the script in plaintext.  Run this from the directory where your bell scripts are stored to create an encrypted file you'll reference in the scripts:
+
+```powershell
+Read-Host -AsSecureString | ConvertFrom-SecureString | Out-File .\ScheduledTaskUser.txt
+```
+
+Next, Use the *BellExample.ps1* file to create scripts for each of your bells.  You'll need to replace the following:
+
+1. Line 3: Add your Switchvox IP
+1. Line 4: Change the path to your secure password file.
+1. Line 7: Change {PA_EXTENSION} to your PA system extension, {ACCOUNTID_FOR_ADMIN} to your Extension's AccountID (See Below), and {EXTENSION_FOR_IVR} to your IVR's extension number.
+
+To get your AccountID needed in the above step, use the following command from a Powershell terminal (add your Switchvox user creds with API access when prompted):
+
+```powershell
+$creds = Get-Credential
+Connect-SvxServer "xxx.xxx.xxx.xxx" -Credential $creds
+Get-SvxExtension {ADD_YOUR_EXT_HERE}
+Disconnect-SvxServer
+```
 
 ### Make a Scheduled Task for Each Bell:
 Change the following Powershell commands for each bell you want to setup, and run it from a Powershell terminal:
