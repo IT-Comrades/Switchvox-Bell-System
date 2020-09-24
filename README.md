@@ -10,6 +10,11 @@ In a nutshell, the Powershell scripts are setup with Windows Task Scheduler that
 ### Install SwitchvoxAPI Powershell Module:
 First, you'll need to install the Powershell Module for the Switchvox API from here: https://github.com/lordmilko/SwitchvoxAPI.  The easiest way to do this is with NuGet:
 
+Note: You will need to register the NuGet Repository if you have not already done so:
+```powershell
+Register-PackageSource -provider NuGet -name nugetRepository -location https://www.nuget.org/api/v2
+```
+Then install the SwitchvoxAPI Package:
 ```powershell
 Install-Package SwitchvoxAPI
 ```
