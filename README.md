@@ -60,6 +60,6 @@ Disconnect-SvxServer
 Change the following Powershell commands for each bell you want to setup, and run it from a Powershell terminal:
 ```powershell
 $action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument 'C:\Path\To\Your\Bell.ps1'
-$trigger = New-ScheduledTaskTrigger --Weekly -WeeksInterval 1 -DaysOfWeek Monday,Tuesday,Wednesday,Thursday,Friday -At 10am
+$trigger = New-ScheduledTaskTrigger -Weekly -WeeksInterval 1 -DaysOfWeek Monday,Tuesday,Wednesday,Thursday,Friday -At 10am
 Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "Bell Name" -Description "This is a scheduled bell."
 ```
